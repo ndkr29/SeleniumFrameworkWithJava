@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Log4j2 Configuration File
+  This file configures logging behavior including log destinations, formats, and log levels.
+-->
+<Configuration status="INFO">
+
+	<!--
+      Properties Section:
+      Used to define reusable variables like file paths or custom parameters.
+    -->
+	<Properties>
+		<Property name="basePath">./logs</Property>
+	</Properties>
+
+	<!--
+      Appenders Section:
+      Defines where the logs should be output (console, files, etc.).
+    -->
+	<Appenders>
+
+		<!--
+          Console Appender:
+          Outputs log messages to the system console.
+        -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+
+		<!--
+          RollingFile Appender:
+          Outputs log messages to a file and rotates the file based on size or time.
+        -->
+
+		<RollingFile name="File" fileName="${basePath}/automation.log" filePattern="${basePath}/automation-%d{yyyy-MM-dd-HH}.log">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<SizeBasedTriggeringPolicy size="80000" />
+		</RollingFile>
+	</Appenders>
+	<!--
+      Loggers Section:
+      Specifies the logging level and associates appenders to be used.
+    -->
+	<Loggers>
+		<Root level="debug">
+			<!-- Here you can use multiple log levels All < Trace < Debug < Info < Warn < Error < Fatal -->
+			<!-- <AppenderRef ref="Console"/> -->
+			<!--
+      Loggers Section:
+      Specifies the logging level and associates appenders to be used.
+    -->
+		    <AppenderRef ref="Console"/> 
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>

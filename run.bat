@@ -1,0 +1,3 @@
+D:
+cd Selenium_Automation_Framework_pwansir\SeleniumFrameworkWithJava
+mvn clean test
